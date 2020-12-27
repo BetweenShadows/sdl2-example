@@ -8,7 +8,8 @@
 #include <stdlib.h>
 #include "world.hpp"
 
-class App {
+class App
+{
 public:
     App();
     ~App();
@@ -22,10 +23,10 @@ private:
 
     bool isRunning_ = false;
     SDL_Event event;
-    SDL_Window* window_ = nullptr;
-    SDL_Renderer* renderer_ = nullptr;
+    SDL_Window *window_ = nullptr;
+    SDL_Renderer *renderer_ = nullptr;
 
-    World* world = nullptr;
+    World *world = nullptr;
 };
 
 #endif // !__APP_HPP__

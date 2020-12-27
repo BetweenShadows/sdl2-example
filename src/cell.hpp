@@ -4,21 +4,24 @@
 #include <SDL2/SDL_video.h>
 #include <SDL2/SDL_render.h>
 
-enum class CellStatus {
+enum class CellStatus
+{
     ALIVE,
     DEAD
 };
 
-class Cell {
+class Cell
+{
 public:
-    Cell(int x, int y, int size, const CellStatus& status);
+    Cell(int x, int y, int size, const CellStatus &status);
     void Revive();
     void Kill();
     bool IsAlive();
     bool IsDead();
     int GetX() const;
     int GetY() const;
-    void Render(SDL_Renderer* renderer);
+    void Render(SDL_Renderer *renderer);
+
 private:
     SDL_Color GetColor();
 

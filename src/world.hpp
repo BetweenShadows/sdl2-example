@@ -7,20 +7,21 @@
 #include "cell.hpp"
 #include "util.hpp"
 
-class World {
+class World
+{
 
 public:
     World(int w, int h, int cell_size);
     ~World();
-    void Render(SDL_Renderer* renderer);
+    void Render(SDL_Renderer *renderer);
     void Update();
 
 private:
-    std::vector<Cell*> GetNeighbours(Cell* cell);
-    int AmountAliveNeighbours(Cell* cell);
+    std::vector<Cell *> GetNeighbours(Cell *cell);
+    int AmountAliveNeighbours(Cell *cell);
     void NextGeneration();
 
-    std::vector<std::vector<Cell*>> cells_;
+    std::vector<std::vector<Cell *>> cells_;
     int width_;
     int height_;
     int cellSize_;
