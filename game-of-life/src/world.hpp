@@ -7,6 +7,12 @@
 #include "cell.hpp"
 #include "util.hpp"
 
+struct Generation
+{
+    int number;
+    std::vector<std::vector<Cell>> population;
+};
+
 class World
 {
 
@@ -15,13 +21,19 @@ public:
     ~World();
     void Render(SDL_Renderer *renderer);
     void Update();
+    int GetCurrentGeneration() const;
+    int GetTotalGenerations() const;
 
 private:
-    std::vector<Cell *> GetNeighbours(Cell *cell);
-    int AmountAliveNeighbours(Cell *cell);
-    void NextGeneration();
+    std::vector<Cell> GetNeighbours(const Cell &cell);
+    int AmountAliveNeighbours(const Cell &cell);
+    Generation *NextGeneration();
+    void SwapGeneration(int to);
 
-    std::vector<std::vector<Cell *>> cells_;
+private:
+    std::vector<Generation *> generations_;
+    Generation *currentGeneration_;
+    size_t genPointer_;
     int width_;
     int height_;
     int cellSize_;

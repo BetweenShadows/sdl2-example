@@ -4,6 +4,7 @@ constexpr int kWindowWidth = 1024;
 constexpr int kWindowHeight = 768;
 constexpr Uint32 framerate = 60;
 const char *kWindowTitle = "Game of Life";
+const char *kManual = "Welcome to this small manual of this app. To switch between generations, you can press the LEFT or RIGHT key.\n If you press left, you will go back, otherwise, you will create new generations.\n The status of the current generation will appear on the window title.\n Make sure to see it. Close this message to test the game of life.\n";
 
 App::App()
 {
@@ -43,7 +44,7 @@ bool App::Init()
 		return false;
 	}
 
-	std::cout << "SDL Initialized." << std::endl;
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Instructions", kManual, NULL);
 	return true;
 }
 
@@ -65,6 +66,12 @@ void App::HandleEvents()
 void App::Update()
 {
 	world->Update();
+	std::string title = "Game of Life - Generation (" +
+						std::to_string(world->GetCurrentGeneration()) +
+						" / " +
+						std::to_string(world->GetTotalGenerations()) +
+						")";
+	SDL_SetWindowTitle(window_, title.c_str());
 }
 
 void App::Render()
